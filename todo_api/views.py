@@ -11,7 +11,7 @@ class ListTodo(GenericAPIView):
     serializer_class = TodoSerializer
 
     def get(self, request):
-        queryset = self.get_queryset()
+        queryset = self.get_queryset().order_by('-created_at')
         serializer = TodoSerializer(queryset, many=Todo)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
